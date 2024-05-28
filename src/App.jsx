@@ -2,10 +2,10 @@ import React from "react";
 
 
 import YourProjectsSideBar from "./YourProjectsSidebar";
-import Content from "./Content";
+import Content from "./Content/Content";
 
 function App() {
-  const classNameMainDiv = "flex"
+  const classNameMainDiv = "flex h-screen pt-10"
 
   return (
     <div className={classNameMainDiv}>        
