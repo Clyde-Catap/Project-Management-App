@@ -1,19 +1,23 @@
 import React from "react";
 import Default from "./Default";
-import Editor from "./Editor";
 import Title from "./Editor";
+import Items from "./Items";
 
 export default function Content(){
 
-    const classNameContentContainer = "flex flex-col items-left justify-center w-full";
-    const classNameContentInnerContainer = "h-9/12 w-9/12 p-10";
+    let classNameContentContainer = "flex flex-col items-left justify-center w-full";
+    const classNameContentInnerContainer = "h-9/12 w-9/12 p-10 mb-10";
 
-    const def = false;
+    const def = 'items'
     let comp;
 
-    if (def){
+    if (def == 'default'){
+        classNameContentContainer  = 'flex flex-col items-center w-full'
        comp =  <Default></Default>
-    } else {
+    }else if (def == 'items'){
+        comp = <Items></Items>
+    } 
+    else if (def == 'editor'){
         comp = <Title></Title>
     }
 

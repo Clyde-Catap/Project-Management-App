@@ -6,7 +6,7 @@ export default function Default(){
     const classNameH2 = "text-neutral-600 text-4xl font-bold m-4";
     const classNameP = "text-neutral-500 text-3xl m-4";
     const classNameButton = "mt-6 px-8 py-4 bg-stone-800 text-stone-400 text-2xl rounded-md m-10 pl-10 pr-10";
-    const classNameDivider = "m-2"
+    const classNameDivider = "flex m-2 items-center justify-center"
 
 
     return (

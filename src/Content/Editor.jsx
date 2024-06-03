@@ -11,13 +11,13 @@ export default function Title (){
 
 
     // const classNameTitleContainer = "p-5";
-    const classNameTitleInput = "bg-stone-300 h-10 w-full";
+    const classNameTitleInput = "bg-stone-300 h-10 w-full border-b-2 border-transparent focus:outline-none focus:border-black focus:ring-0";
 
     // const classNameDescriptionContainer = "p-5";
-    const classNameDescriptionInput = "bg-stone-300 h-20 w-full";
+    const classNameDescriptionInput = "bg-stone-300 h-20 w-full border-b-2 border-transparent focus:outline-none focus:border-black focus:ring-0";
     
     // const classNameDueDateContainer = "p-5";
-    const classnameDueDateInput = "bg-stone-300 h-10 w-full";
+    const classnameDueDateInput = "bg-stone-300 h-10 w-full border-b-2 border-transparent focus:outline-none focus:border-black focus:ring-0";
 
 
     return (
