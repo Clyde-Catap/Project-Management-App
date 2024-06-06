@@ -16,7 +16,7 @@ function App() {
   const classNameItems = "flex flex-col items-center mt-3";
   const classNameSideBarProjectsContainer = "mt-6 ml-7"
 
-  let projects = {
+  let projectstiral = {
     "Learning Reacts": {
       "project_description": "",
       "project_date": "",
@@ -29,32 +29,47 @@ function App() {
     },
 
   }
-  const projectHeaders = ['1','2'];
+
+  const projects = {};
   const showComponent = "default";
+  const defaultkey = "";
 
   const [componentType,changeComponentType] = useState(showComponent);
-  const addProject = useRef();
-  // const projectHeaders = Object.keys(previousProjects);
+  const [previousProjects, addProjects] = useState(projects);
+  const [currentKey, changekey] = useState(defaultkey)
+ 
 
-  // function handleAddProject(event) {
-  //   const newProjectName = `New Project ${Object.keys(previousProjects).length + 1}`;
-  //   const updatedProjects = {
-  //     ...previousProjects,
-  //     [newProjectName]: {
-  //       project_description: "",
-  //       project_date: "",
-  //       tasks: []
-  //     }
-  //   };
-  //   addProjects(updatedProjects);
-  // }
+
+  function addProjectItem(projectHeader, projectDescription, projectDate) {
+    const newProjectName = projectHeader;
+    const updatedProjects = {
+      ...previousProjects,
+      [newProjectName]: {
+        project_description: projectDescription,
+        project_date: projectDate,
+        tasks: []
+      }
+    };
+    addProjects(updatedProjects);
+  }
   function handleAddProject(event){
     changeComponentType('editor')
   }
 
   function changeComponent(type){
-    console.log('ww')
     changeComponentType(type)
+  }
+
+  function changeCurrentKey(key){
+    changekey(key)
+  }
+
+  function addTasksToKey(key, newTasks){
+    const updatedProjects = previousProjects
+    updatedProjects[key]['tasks']= newTasks
+    // console.log(newTasks)
+    addProjects(updatedProjects)
+    // console.log(previousProjects)
   }
 
 
@@ -69,12 +84,19 @@ function App() {
                     <button onClick={handleAddProject} className={classNameButton}>+ Add Project</button>
                 </div>
                 <div className={classNameSideBarProjectsContainer}>
-                  {/* <SidebarProjects projectHeaders={Object.keys(previousProjects)}></SidebarProjects> */}
+                  <SidebarProjects 
+                    projectHeaders={Object.keys(previousProjects)} changeComponentFunction={changeComponent} changeCurrentKey={changeCurrentKey}></SidebarProjects>
                 </div>
             </div>
         </div>
-      <Content componentType={componentType} changeComponentFunction={changeComponent}/>
-
+      <Content 
+          componentType={componentType} 
+          changeComponentFunction={changeComponent} 
+          addProjectItemFunction={addProjectItem} 
+          itemData={previousProjects[currentKey]}
+          itemTitle={currentKey}
+          addTasksToKey={addTasksToKey} 
+        />
     </div>
   );
 }

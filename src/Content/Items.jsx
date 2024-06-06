@@ -1,6 +1,8 @@
 import React from "react";
+import { useRef, useState } from "react";
+import Tasks from "./Tasks";
 
-export default function Items()
+export default function Items({changeComponentFunction, itemData, itemTitle, addTasksToKey})
 {
     const classNameh1 = "text-neutral-700 text-3xl font-bold m-4";
     const classNamedate = "text-neutral-500 ml-4";
@@ -22,44 +24,44 @@ export default function Items()
     const classNameTasksInputLabel = "ml-3 text-stone-800 font-medium text-center";
 
     const classNameTasksInnerContainer = "bg-stone-100 mt-10 pt-10 pl-5 pr-5 pb-10";
-    const classNameTasksItemsContainer = "flex justify-between pt-3 pb-3";
-    const classNameTasksItems = "ml-3 text-stone-800 font-medium text-center";
-    const classNameTasksClearButton = "ml-3 text-stone-800 font-medium text-center";
+
+    const tasks = itemData['tasks'];
+    const [currentTasks, updateTasks] = useState(tasks);
+    const addTaskRef = useRef();
+
+    
+    function handleAddTask(){
+        const updatedTasks = currentTasks
+        updatedTasks.push(addTaskRef.current.value)
+        // console.log(tasks)
+        updateTasks(updatedTasks)
+        addTasksToKey(itemTitle,updatedTasks)
+    }
+    console.log(currentTasks)
+
 
     return (
     <>
         <div className={classNameHeaderContainer}>
             <div className={classNametitleContainer}>
-                <h1 className={classNameh1}>Learning React</h1>
-                <h2 className={classNamedate}>Dec 29, 2024</h2>
+                <h1 className={classNameh1}>{itemTitle}</h1>
+                <h2 className={classNamedate}>{itemData['project_date']}</h2>
             </div>
             <div className={classNameDeletetContainer}>
                 <button className={classNameDeleteButton}>Delete</button>
             </div>
         </div>
         <div className={classNameDescriptionContainer}>
-            <p className={classNameDescription}>Learn React from the group up,</p>
-            <p className={classNameDescription}>Start with the basics, finish with advanced knowledge.</p>
+            <p className={classNameDescription}>{itemData['project_description']}</p>
         </div>
         <div className={classNameTasksContainer}>
             <h1 className={classNameTasksH1}>Tasks</h1>
             <div className={classNameTasksInputContainer}>
-                <input className={classNameTasksInput}></input>
-                <h2 className={classNameTasksInputLabel}>Add task</h2>
+                <input ref={addTaskRef} className={classNameTasksInput}></input>
+                <button onClick={handleAddTask} className={classNameTasksInputLabel}>Add task</button>
             </div>
             <div className={classNameTasksInnerContainer}>
-                <div className={classNameTasksItemsContainer}>
-                    <h3 className={classNameTasksItems}>practice, practice, practice!</h3>
-                    <button className={classNameTasksClearButton}>Clear</button>
-                </div>
-                <div className={classNameTasksItemsContainer}>
-                    <h3 className={classNameTasksItems}>Learn Advanced Concpets</h3>
-                    <button className={classNameTasksClearButton}>Clear</button>
-                </div>
-                <div className={classNameTasksItemsContainer}>
-                    <h3 className={classNameTasksItems}>Learn Basics</h3>
-                    <button className={classNameTasksClearButton}>Clear</button>
-                </div>
+                <Tasks tasks={currentTasks}></Tasks>
             </div>
         </div>
     </>
