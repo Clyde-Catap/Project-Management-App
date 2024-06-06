@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Title (){
+export default function Editor ({changeComponentFunction}){
 
     const classNameText = "text-stone-500 font-bold";
     const classNameInputContainer = "p-5";
@@ -18,14 +18,21 @@ export default function Title (){
     
     // const classNameDueDateContainer = "p-5";
     const classnameDueDateInput = "bg-stone-300 h-10 w-full border-b-2 border-transparent focus:outline-none focus:border-black focus:ring-0";
+    function handleSave(){
+        changeComponentFunction('default')
+    }
+
+    function handleCancel(){
+        changeComponentFunction('default')
+    }
 
 
     return (
     <>
         <div className={classNameButtonContainer}>
             <div>
-                <button className={classNameCancelButton}>Cancel</button>
-                <button className={classNameSaveButton}>Save</button>
+                <button className={classNameCancelButton} onClick={handleCancel}>Cancel</button>
+                <button className={classNameSaveButton} onClick={handleSave}>Save</button>
             </div>
         </div>
         <div className={classNameInputContainer}>
