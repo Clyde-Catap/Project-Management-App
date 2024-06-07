@@ -22,6 +22,9 @@ export default function Editor ({changeComponentFunction, addProjectItemFunction
     
     function handleSave(){
         addProjectItemFunction(titleRef.current.value, descriptionRef.current.value, dateRef.current.value)
+        titleRef.current.value = "";
+        descriptionRef.current.value = "";
+        dateRef.current.value = "";
         
     }
 
