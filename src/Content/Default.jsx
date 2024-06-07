@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Default(){
+export default function Default({changeComponentFunction}){
 
     const classNameImage = "size-40 m-4";
     const classNameH2 = "text-neutral-600 text-4xl font-bold m-4";
@@ -8,6 +8,9 @@ export default function Default(){
     const classNameButton = "mt-6 px-8 py-4 bg-stone-800 text-stone-400 text-2xl rounded-md m-10 pl-10 pr-10";
     const classNameDivider = "flex m-2 items-center justify-center"
 
+    function handleButton(){
+        changeComponentFunction('editor')
+    }
 
     return (
     <>
@@ -21,7 +24,7 @@ export default function Default(){
             <p className={classNameP}>Select a project or get started with a new one</p>
         </div>
         <div className={classNameDivider}>
-            <button className={classNameButton}>Create new project</button>
+            <button className={classNameButton} onClick={handleButton}>Create new project</button>
         </div>
     </>
 

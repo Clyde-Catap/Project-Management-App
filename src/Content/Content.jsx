@@ -13,7 +13,7 @@ export default function Content({componentType, changeComponentFunction, addProj
 
     if (currentComponentType == 'default'){
         classNameContentContainer  = 'flex flex-col items-center w-full'
-       comp =  <Default></Default>
+       comp =  <Default changeComponentFunction={changeComponentFunction}></Default>
     }else if (currentComponentType == 'items'){
         comp = <Items changeComponentFunction={changeComponentFunction} itemData={itemData} itemTitle={itemTitle} addTasksToKey={addTasksToKey} deleteProjectItem={deleteProjectItem}></Items>
     } 
